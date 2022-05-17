@@ -8,7 +8,7 @@
       <p class="text-lg font-medium text-zinc-100">
         “这是使用 tailwindcss
         来实现的一个基础的卡片区域，在实现该卡片区域的过程中，我们从来没有离开过
-        HTML 区域.”
+        
       </p>
       <div class="font-medium">
         <div class="text-sky-400">LGD_Sunday</div>
