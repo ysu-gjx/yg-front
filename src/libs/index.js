@@ -1,13 +1,13 @@
 import { defineAsyncComponent } from 'vue'
-import SvgIcon from './svg-icon/index.vue'
-import Popup from './popup/index.vue'
+// import SvgIcon from './svg-icon/index.vue'
+// import Popup from './popup/index.vue'
 
 export default {
   install(app) {
     // app.component('m-svg-icon', SvgIcon)
     // app.component('m-popup', Popup)
 
-    // 1. 获取当前路径下所有文件夹中的 inde.vue
+    // 1. 获取当前路径下所有文件夹中的 index.vue
     const components = import.meta.glob('./*/index.vue')
     // console.log(components)
 
