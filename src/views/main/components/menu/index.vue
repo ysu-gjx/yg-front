@@ -4,7 +4,7 @@
     <ul class="overflow-y-auto">
       <li
         class="text-lg text-zinc-900 px-1 py-1.5 duration-100 active:bg-zinc-100"
-        v-for="(item, index) in categories"
+        v-for="(item, index) in $store.getters.categorys"
         :key="item.id"
         @click="onItemClick(index)"
       >
@@ -15,12 +15,12 @@
 </template>
 
 <script setup>
-defineProps({
-  categories: {
-    type: Array,
-    required: true
-  }
-})
+// defineProps({
+//   categories: {
+//     type: Array,
+//     required: true
+//   }
+// })
 
 const emit = defineEmits(['onItemClick'])
 

@@ -10,7 +10,7 @@
       <div
         ref="contentRef"
         :style="contentStyle"
-        v-show="visible"
+        v-show="visible && $slots.default"
         class="absolute p-1 z-20 bg-white border rounded-md"
       >
         <!-- 弹出层内容 -->
@@ -56,8 +56,9 @@ const props = defineProps({
   }
 })
 
-// 鼠标移入
+// 控制延迟关闭
 let timer = null
+// 鼠标移入
 const onMouseenter = () => {
   visible.value = true
   timer && clearTimeout(timer)
