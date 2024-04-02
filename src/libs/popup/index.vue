@@ -4,7 +4,7 @@
     <transition name="popup-down-up">
       <div
         v-bind="$attrs"
-        class="w-screen bg-white fixed z-50 bottom-0"
+        class="w-screen bg-white fixed z-50 bottom-0 dark:bg-zinc-800"
         v-if="isOpen"
       >
         <slot></slot>

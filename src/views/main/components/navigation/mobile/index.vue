@@ -1,18 +1,18 @@
 <template>
-  <div class="bg-white sticky top-0 left-0 z-10">
+  <div class="bg-white sticky top-0 left-0 z-10 dark:bg-zinc-900 duration-500">
     <ul
       ref="ulTargetRef"
       class="relative flex overflow-x-auto p-1 text-xs text-zinc-600 overflow-hidden duration-200"
     >
       <!-- slider 滑块 -->
       <li
-        class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200"
+        class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200 dark:bg-zinc-800"
         ref="sliderRef"
         :style="sliderStyle"
       ></li>
       <!-- 汉堡按钮 -->
       <li
-        class="fixed z-20 top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white"
+        class="fixed z-20 top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white dark:bg-zinc-900 dark:shadow-l-zinc"
         @click="isVisible = true"
       >
         <m-svg-icon name="hamburger" class="w-1.5 h-1.5"></m-svg-icon>
@@ -39,14 +39,6 @@ import { ref, watch, nextTick } from 'vue'
 import { useScroll } from '@vueuse/core'
 import MenuVue from '@/views/main/components/menu/index.vue'
 
-// vite 构建的项目中，我们可以直接使用 defineProps
-// defineProps({
-//   data: {
-//     type: Array,
-//     required: true
-//   }
-// })
-
 const sliderStyle = ref({
   transform: 'translateX(0)',
   width: '52px'
@@ -60,6 +52,7 @@ const isVisible = ref(false)
 const { x: ulScrollLeft } = useScroll(ulTargetRef)
 
 watch(currentCategoryIndex, (val) => {
+  console.log(itemRefs.value)
   const { width, left, x } = itemRefs.value[val].getBoundingClientRect()
   const paddingL = parseFloat(
     getComputedStyle(ulTargetRef.value).getPropertyValue('padding-left')

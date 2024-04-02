@@ -5,10 +5,10 @@ import { setItem, getItem } from '@/utils/storage'
 export default {
   // 独立作用域
   namespaced: true,
-  state: {
+  state: () => ({
     // navigationBar 展示的数据源
     categorys: getItem('CATEGORYS') || CATEGORY_NOMAR_DATA
-  },
+  }),
   mutations: {
     /**
      * 为 categorys 赋值
@@ -24,7 +24,7 @@ export default {
     async getCategorys({ commit }) {
       const { categorys } = await getCategory()
       commit('setCategorys', categorys)
-      setItem('CATEGORYS', categorys)
+      setItem('CATEGORYS', [ALL_CATEGORY_ITEM, ...categorys])
     }
   }
 }

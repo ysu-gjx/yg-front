@@ -5,11 +5,13 @@ import router from './router'
 import { useREM } from './utils/flexible'
 import mLibs from './libs'
 import store from './store'
+import useTheme from '@/utils/theme'
 
 // 注册 svg-icons
 import 'virtual:svg-icons-register'
 
 useREM()
+useTheme()
 
 const app = createApp(App)
 
