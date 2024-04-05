@@ -5,6 +5,7 @@ import router from './router'
 import { useREM } from './utils/flexible'
 import mLibs from './libs'
 import store from './store'
+import mDirectives from './directives'
 import useTheme from '@/utils/theme'
 
 // 注册 svg-icons
@@ -15,4 +16,4 @@ useTheme()
 
 const app = createApp(App)
 
-app.use(router).use(store).use(mLibs).mount('#app')
+app.use(router).use(store).use(mLibs).use(mDirectives).mount('#app')

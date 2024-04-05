@@ -217,8 +217,8 @@ watch(
 const useItemLocation = () => {
   // 遍历数据源
   props.data.forEach((item, index) => {
-    //  避免重复计算
-    if (item._style) return
+    //  避免重复计算  // 连续两次改变数据，会导致 数据变化了，但是 图片没加载完，cardHeights小于数据长度
+    if (item._style || index >= cardHeights.length) return
 
     // 生成 _style 属性
     item._style = {}
