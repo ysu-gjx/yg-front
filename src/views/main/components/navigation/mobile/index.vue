@@ -21,9 +21,11 @@
         v-for="(item, index) in $store.getters.categorys"
         :key="item.id"
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
-        :class="{ 'text-zinc-100': currentCategoryIndex === index }"
+        :class="{
+          'text-zinc-100': $store.getters.currentCategoryIndex === index
+        }"
         ref="itemRefs"
-        @click="currentCategoryIndex = index"
+        @click="onItemClick(item, index)"
       >
         {{ item.name }}
       </li>
@@ -38,39 +40,43 @@
 import { ref, watch, nextTick } from 'vue'
 import { useScroll } from '@vueuse/core'
 import MenuVue from '@/views/main/components/menu/index.vue'
+import { useStore } from 'vuex'
 
 const sliderStyle = ref({
   transform: 'translateX(0)',
   width: '52px'
 })
 
-const currentCategoryIndex = ref(0)
+// const currentCategoryIndex = ref(0)
 const itemRefs = ref([])
 const ulTargetRef = ref(null)
 const isVisible = ref(false)
 
 const { x: ulScrollLeft } = useScroll(ulTargetRef)
 
-watch(currentCategoryIndex, (val) => {
-  console.log(itemRefs.value)
-  const { width, left, x } = itemRefs.value[val].getBoundingClientRect()
-  const paddingL = parseFloat(
-    getComputedStyle(ulTargetRef.value).getPropertyValue('padding-left')
-  )
-  sliderStyle.value = {
-    transform: `translateX(${ulScrollLeft.value + left - paddingL}px)`,
-    width: width + 'px'
+const store = useStore()
+watch(
+  () => store.getters.currentCategoryIndex,
+  (val) => {
+    const { width, left, x } = itemRefs.value[val].getBoundingClientRect()
+    const paddingL = parseFloat(
+      getComputedStyle(ulTargetRef.value).getPropertyValue('padding-left')
+    )
+    sliderStyle.value = {
+      transform: `translateX(${ulScrollLeft.value + left - paddingL}px)`,
+      width: width + 'px'
+    }
+
+    nextTick(() => {
+      // 设置被选中项 在 navigation 中的滚动到可视区域中
+      itemRefs.value[val].scrollIntoViewIfNeeded()
+    })
   }
-})
+)
 
-const onItemClick = (index) => {
-  currentCategoryIndex.value = index
+const onItemClick = (item) => {
+  store.commit('app/changeCurrentCategory', item)
   isVisible.value = false
-
-  nextTick(() => {
-    // 设置被选中项 在 navigation 中的滚动到可视区域中
-    itemRefs.value[index].scrollIntoViewIfNeeded()
-  })
 }
 </script>
 

@@ -6,3 +6,15 @@ import request from '@/utils/request'
 export const getPexelsList = (params) => {
   return request.get('/pexels/list', { params })
 }
+
+/**
+ * 获取搜索提示
+ */
+export const getHint = (q) => {
+  return request({
+    url: '/pexels/hint',
+    params: {
+      q
+    }
+  })
+}

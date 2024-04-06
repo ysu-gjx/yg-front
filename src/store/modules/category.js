@@ -13,8 +13,8 @@ export default {
     /**
      * 为 categorys 赋值
      */
-    setCategorys(state, paload) {
-      state.categorys = [ALL_CATEGORY_ITEM, ...paload]
+    setCategorys(state, payload) {
+      state.categorys = [ALL_CATEGORY_ITEM, ...payload]
     }
   },
   actions: {

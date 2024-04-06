@@ -21,10 +21,11 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import ItemVue from './item.vue'
 import { getPexelsList } from '@/api/pexels'
 import { isMobileTerminal } from '@/utils/flexible'
+import { useStore } from 'vuex'
 
 /**
  * 构建数据请求
@@ -61,5 +62,28 @@ const getPexelsData = async () => {
   // 修改 loading 标记
   loading.value = false
 }
+
+/**
+ * 通过此方法修改 query 请求参数，重新发起请求
+ */
+const resetQuery = (newQuery) => {
+  Object.assign(query, newQuery)
+  // 重置状态 触发watterfall 组件获取数据
+  isFinished.value = false
+  pexelsList.value = []
+}
+/**
+ * 监听分类变化，触发列表切换
+ */
+const store = useStore()
+watch(
+  () => store.getters.currentCategory,
+  (val) => {
+    resetQuery({
+      page: 1,
+      categoryId: val.id
+    })
+  }
+)
 </script>
 <style lang="scss" scoped></style>
