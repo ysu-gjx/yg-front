@@ -60,6 +60,7 @@ const sizeEnum = {
 const EMITS_CLICK = 'click'
 </script>
 <script setup>
+import MSvgIcon from '../svg-icon/index.vue'
 import { computed } from 'vue'
 // 指定 props 让开发者可以控制当前按钮
 const props = defineProps({
