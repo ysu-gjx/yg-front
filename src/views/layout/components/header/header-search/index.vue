@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full guide-search">
     <m-search v-model="inputValue" ref="searchRef" @search="onSearchHandler">
       <template #dropdown>
         <!-- 搜索提示 -->
