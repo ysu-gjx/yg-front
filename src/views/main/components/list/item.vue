@@ -31,7 +31,7 @@
           size="small"
           icon="download"
           iconClass="fill-zinc-900 dark:fill-zinc-200"
-          @click.stop="onDownload"
+          @click="onDownload"
         />
         <m-button
           class="absolute bottom-1.5 right-1.5 bg-zinc-100/70"
@@ -39,7 +39,7 @@
           size="small"
           icon="full"
           iconClass="fill-zinc-900 dark:fill-zinc-200"
-          @click.stop="onImgFullScreen"
+          @click="onImgFullScreen"
         />
       </div>
     </div>

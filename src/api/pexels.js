@@ -25,3 +25,12 @@ export const getHint = (q) => {
 export const getThemes = () => {
   return request.get('/pexels/themes')
 }
+
+/**
+ * 获取指定图片数据
+ */
+export const getPexelsFromId = (id) => {
+  return request({
+    url: `/pexels/${id}`
+  })
+}
