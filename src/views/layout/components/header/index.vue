@@ -4,8 +4,8 @@
   >
     <div class="flex items-center">
       <img
-        class="guide-home h-4 cursor-pointer mr-2"
-        src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
+        class="guide-home h-4 cursor-pointer mr-2 rounded-[5px]"
+        src="/logo2.png"
         @click="onToHome"
       />
       <header-search class="mr-1"></header-search>

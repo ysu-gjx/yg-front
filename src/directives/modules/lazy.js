@@ -5,6 +5,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 export default {
   name: 'lazy',
   mounted(el, binding) {
+    el.src = ''
     const { stop } = useIntersectionObserver(el, ([{ isIntersecting }]) => {
       if (isIntersecting) {
         // binding.value && (el.src = binding.value)

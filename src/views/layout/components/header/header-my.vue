@@ -2,6 +2,7 @@
   <m-popover placement="bottom-left">
     <template #reference>
       <div
+        v-if="false"
         class="guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100 dark:hover:bg-zinc-900"
       >
         <!-- 头像 -->
@@ -20,6 +21,16 @@
           name="vip"
           class="w-1.5 h-1.5 absolute right-[16px] bottom-0"
         ></m-svg-icon>
+      </div>
+
+      <!-- 登录 -->
+      <div v-else>
+        <m-button
+          class="guide-my"
+          icon="profile"
+          iconColor="#fff"
+          @click="onToLogin"
+        ></m-button>
       </div>
     </template>
 
@@ -42,6 +53,7 @@
   </m-popover>
 </template>
 <script setup>
+import { useRouter } from 'vue-router'
 // 构建 menu 数据源
 const menuArr = [
   {
@@ -63,5 +75,11 @@ const menuArr = [
     path: ''
   }
 ]
+
+//
+const router = useRouter()
+const onToLogin = () => {
+  router.push('/login')
+}
 </script>
 <style lang="scss" scoped></style>
